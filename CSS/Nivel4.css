@@ -1,0 +1,692 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Nunito', sans-serif;
+  background-image: url("../IMG/fondolessonslevels.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url("../IMG/fondolessonslevels.png") center / cover no-repeat;
+  z-index: -1;
+  animation: moverFondo 10s ease-in-out infinite alternate;
+}
+
+@keyframes moverFondo {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.05);
+  }
+}
+
+/* =========================
+   ENCABEZADO
+========================= */
+
+.encabezado-nivel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 80px 16px 0px;
+}
+
+.titulo-nivel {
+  text-align: center;
+  color: #fffffe;
+  font-size: 58px;
+  text-shadow: 0 0 8px #eeedecc3,
+               0 0 18px #eeedecc3,
+               0 0 28px #eeedecc3;
+}
+
+.subtitulo-nivel {
+  display: block;
+  margin-top: 5px;
+  color: #f7f4ff;
+  font-size: 28px;
+  text-shadow: 0 0 5px #fffbf2c3,
+               0 0 15px #fffbf2c3,
+               0 0 25px #fffbf2c3;
+}
+
+/* ==========================
+   HUD
+========================== */
+
+.hud {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  font-size: 16px;
+  margin-right: 80px;
+}
+
+.vidas {
+  display: inline-block;
+  padding: 10px 18px;
+  padding-right: 0;
+  background: rgba(53, 28, 127, 0.66);
+  border: 2px solid #6c4bd1;
+  border-radius: 12px;
+  font-size: 26px;
+  letter-spacing: 15px;
+  box-shadow:
+    0 0 8px rgba(108, 75, 209, 0.5);
+  transition: 0.2s;
+}
+
+.vidas span {
+  color: #ff6b8a;
+  text-shadow:
+    0 0 4px #ff6b8a,
+    0 0 8px #ff6b8a;
+}
+
+.vidas span.perdio {
+  color: #903041;
+  text-shadow:
+    0 0 4px #83293a,
+    0 0 8px #83293a;
+}
+
+.puntaje {
+  padding: 9px 18px;
+  background: rgba(53, 28, 127, 0.66);
+  border: 2px solid #6c4bd1;
+  border-radius: 10px;
+  color: #f7f4ff;
+  font-size: 16px;
+  box-shadow: 0 0 8px rgba(108, 75, 209, 0.5);
+}
+
+.puntaje span {
+  color: #6c4bd1;
+  font-weight: bold;
+}
+
+/* ==========================
+   BOTON
+========================== */
+
+.boton-volver {
+  color: #f7f4ff;
+  text-decoration: none;
+  padding: 10px 16px;
+  margin-top: 70px;
+  margin-left: 120px;
+  background: rgba(53, 28, 127, 0.66);
+  border: 2px solid #6c4bd1;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: bold;
+  box-shadow: 0 0 8px rgba(108, 75, 209, 0.5);
+  transition: 0.2s;
+}
+
+.boton-volver:hover {
+  background: rgba(108, 75, 209, 0.5);
+  transform: scale(1.05);
+}
+
+/* =========================
+   CONTENEDOR DEL JUEGO
+========================= */
+
+.contenedor-juego {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 45px 16px 20px;
+}
+
+.instruccion {
+  margin: 0 auto 20px;
+  max-width: 700px;
+  padding: 10px 18px;
+  text-align: center;
+  font-family: 'Nunito', sans-serif;
+  font-size: 20px;
+  line-height: 1.5;
+  color: #eee8ff;
+  background: rgba(53, 28, 127, 0.45);
+  border: 1px solid rgba(150, 120, 255, 0.45);
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(108, 75, 209, 0.25);
+}
+
+/* =========================
+   GALAXIA
+========================= */
+
+.galaxia {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 45px 20px;
+  width: min(90vw, 520px);
+  padding: 16px;
+}
+
+.estrella {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  transition: transform .2s ease;
+}
+
+.estrella .imagen-estrella,
+.estrella .imagen-color {
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+.estrella .imagen-estrella {
+  z-index: 1;
+}
+
+.estrella .imagen-color {
+  z-index: 2;
+  opacity: 0;
+  transform: scale(0.1);
+  transform-origin: center;
+}
+
+.estrella.correcto .imagen-color {
+  animation: pintar-estrella 0.8s ease-out forwards;
+}
+
+@keyframes pintar-estrella {
+  0% {
+    opacity: 1;
+    transform: scale(0.1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.estrella.resaltado {
+  transform: scale(1.08) rotate(6deg);
+}
+
+.etiqueta-planeta {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  padding: 4px 10px;
+  border: 2px solid rgba(68, 120, 198, 0.673);
+  border-radius: 12px;
+  background: rgb(76, 126, 225);
+  color: #ffffff;
+  font-family: 'Nunito', sans-serif;
+  font-size: clamp(11px, 2.5vw, 14px);
+  white-space: nowrap;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, .2);
+}
+
+.estrella.correcto .etiqueta-planeta {
+  border-color: #6ba0fa;
+  background: rgba(78, 127, 234, 0.736);
+}
+
+/* =========================
+   BANCO DE PINTURAS
+========================= */
+
+.banco-pinturas {
+  position: absolute;
+  left: calc(50% + 100px);
+  top: 50%;
+  margin-top: -80px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  width: auto;
+  padding: 14px 18px;
+}
+
+.pintura-arrastrable {
+  width: 160px;
+  height: 160px;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  filter: drop-shadow(2px 3px 3px rgba(0, 0, 0, .3));
+  transition: transform .15s ease, opacity .2s ease;
+}
+
+.pintura-arrastrable .imagen-pintura {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+.pintura-arrastrable:active {
+  cursor: grabbing;
+}
+
+.pintura-arrastrable.arrastrando {
+  position: fixed;
+  z-index: 999;
+  pointer-events: none;
+  transform: scale(1.12);
+  filter: drop-shadow(3px 6px 8px rgba(0, 0, 0, .45));
+}
+
+.pintura-arrastrable.usada {
+  display: none;
+}
+
+.pintura-arrastrable.rechazada {
+  animation: sacudir .35s ease;
+}
+
+@keyframes sacudir {
+  0%, 100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-7px);
+  }
+
+  75% {
+    transform: translateX(7px);
+  }
+}
+
+/* ============================================
+    PANTALLAS DE VICTORIA Y DERROTA
+    ============================================ */
+
+.pantalla-flotante {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(27, 16, 82, 0.674);
+  z-index: 1000;
+}
+
+.pantalla-flotante:not([hidden]) {
+  display: flex;
+}
+
+.pantalla-flotante .pantalla-contenido {
+  width: 100%;
+  max-width: 340px;
+  padding: 28px 30px;
+  text-align: center;
+  background: #1b1245d8;
+  border: 3px solid #5233afae;
+  border-radius: 20px;
+}
+
+.pantalla-flotante .pantalla-contenido h2 {
+  margin: 0 0 12px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.pantalla-flotante .pantalla-contenido p {
+  margin: 0 0 16px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #ffff;
+}
+
+.pantalla-flotante .boton-primario {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 11px 24px;
+  background: #5d4de8;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.pantalla-flotante .boton-primario:hover {
+  background: #7665f5;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(118, 101, 245, 0.5);
+}
+
+/* ============================================
+   ADAPTABILIDAD PARA CELULARES
+============================================ */
+
+@media (max-width: 768px) {
+
+  body {
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* =========================
+     ENCABEZADO
+  ========================= */
+
+  .encabezado-nivel {
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px 15px 0;
+    gap: 18px;
+  }
+
+  .titulo-nivel {
+    font-size: 40px;
+    line-height: 1.1;
+  }
+
+  .subtitulo-nivel {
+    font-size: 21px;
+    margin-top: 5px;
+  }
+
+  /* =========================
+     HUD
+  ========================= */
+
+  .hud {
+    margin-right: 0;
+    gap: 10px;
+    font-size: 14px;
+  }
+
+  .vidas {
+    padding: 7px 12px;
+    padding-right: 0;
+    font-size: 21px;
+    letter-spacing: 9px;
+  }
+
+  .puntaje {
+    padding: 7px 13px;
+    font-size: 14px;
+  }
+
+  /* =========================
+     BOTÓN VOLVER
+  ========================= */
+
+  .boton-volver {
+    margin-top: 0;
+    margin-left: 0;
+    padding: 8px 13px;
+    font-size: 13px;
+  }
+
+  /* =========================
+     CONTENEDOR
+  ========================= */
+
+  .contenedor-juego {
+    width: 100%;
+    max-width: 700px;
+    padding: 25px 15px 20px;
+  }
+
+  .instruccion {
+    width: 100%;
+    padding: 9px 14px;
+    margin-bottom: 18px;
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+  /* =========================
+     GALAXIA
+  ========================= */
+
+  .galaxia {
+    width: min(94vw, 500px);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px 10px;
+    padding: 10px;
+    margin: 0 auto;
+  }
+
+  .estrella {
+    width: 100%;
+    aspect-ratio: 1;
+  }
+
+  .estrella .imagen-estrella,
+  .estrella .imagen-color {
+    width: 120%;
+    height: 120%;
+  }
+
+  .etiqueta-planeta {
+    top: -7px;
+    padding: 3px 8px;
+    font-size: clamp(10px, 2.8vw, 13px);
+    border-radius: 10px;
+  }
+
+  /* =========================
+     BANCO DE PINTURAS
+  ========================= */
+
+  .banco-pinturas {
+    position: static;
+    left: auto;
+    top: auto;
+    margin: 20px auto 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    width: min(94vw, 500px);
+    padding: 10px;
+    justify-items: center;
+  }
+
+  .pintura-arrastrable {
+    width: 95px;
+    height: 95px;
+  }
+
+  /* =========================
+     PANTALLAS FINALES
+  ========================= */
+
+  .pantalla-flotante {
+    padding: 15px;
+  }
+
+  .pantalla-flotante .pantalla-contenido {
+    width: 100%;
+    max-width: 330px;
+    padding: 24px 20px;
+    border-radius: 18px;
+  }
+
+  .pantalla-flotante .pantalla-contenido h2 {
+    font-size: 24px;
+  }
+
+  .pantalla-flotante .pantalla-contenido p {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .pantalla-flotante .boton-primario {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}
+
+
+/* ============================================
+   CELULARES PEQUEÑOS
+============================================ */
+
+@media (max-width: 480px) {
+
+  body {
+    overflow-x: hidden;
+  }
+
+  /* =========================
+     ENCABEZADO
+  ========================= */
+
+  .encabezado-nivel {
+    padding: 20px 10px 0;
+    gap: 12px;
+  }
+
+  .titulo-nivel {
+    font-size: 30px;
+  }
+
+  .subtitulo-nivel {
+    font-size: 17px;
+  }
+
+  /* =========================
+     HUD
+  ========================= */
+
+  .hud {
+    gap: 7px;
+  }
+
+  .vidas {
+    padding: 6px 9px;
+    padding-right: 0;
+    font-size: 18px;
+    letter-spacing: 6px;
+  }
+
+  .puntaje {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  /* =========================
+     BOTÓN VOLVER
+  ========================= */
+
+  .boton-volver {
+    padding: 7px 11px;
+    font-size: 12px;
+  }
+
+  /* =========================
+     CONTENEDOR
+  ========================= */
+
+  .contenedor-juego {
+    padding: 18px 10px 15px;
+  }
+
+  .instruccion {
+    padding: 8px 11px;
+    font-size: 14px;
+    line-height: 1.35;
+    border-radius: 10px;
+  }
+
+  /* =========================
+     GALAXIA
+  ========================= */
+
+  .galaxia {
+    width: 94vw;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px 7px;
+    padding: 7px;
+  }
+
+  .estrella .imagen-estrella,
+  .estrella .imagen-color {
+    width: 118%;
+    height: 118%;
+  }
+
+  .etiqueta-planeta {
+    top: -5px;
+    padding: 3px 6px;
+    font-size: 10px;
+    border-radius: 8px;
+  }
+
+  /* =========================
+     BANCO DE PINTURAS
+  ========================= */
+
+  .banco-pinturas {
+    width: 94vw;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 7px;
+    padding: 7px;
+    margin-top: 15px;
+  }
+
+  .pintura-arrastrable {
+    width: 70px;
+    height: 70px;
+  }
+
+  /* =========================
+     PANTALLAS FINALES
+  ========================= */
+
+  .pantalla-flotante {
+    padding: 10px;
+  }
+
+  .pantalla-flotante .pantalla-contenido {
+    width: 100%;
+    max-width: 300px;
+    padding: 20px 15px;
+    border-radius: 16px;
+  }
+
+  .pantalla-flotante .pantalla-contenido h2 {
+    font-size: 21px;
+  }
+
+  .pantalla-flotante .pantalla-contenido p {
+    font-size: 13px;
+    line-height: 1.35;
+  }
+
+  .pantalla-flotante .boton-primario {
+    padding: 9px 17px;
+    font-size: 13px;
+  }
+}

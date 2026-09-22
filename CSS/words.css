@@ -1,0 +1,464 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Nunito', 'Segoe UI', sans-serif;
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+
+  background-color: #2b103a;
+  background-image: url('../IMG/fondowords.png');
+  background-size: 115% 115%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+
+  animation: moverFondo 20s ease-in-out infinite;
+}
+
+@keyframes moverFondo {
+
+  0% {
+    background-position: 50% 50%;
+  }
+
+  25% {
+    background-position: 60% 45%;
+  }
+
+  50% {
+    background-position: 40% 55%;
+  }
+
+  75% {
+    background-position: 60% 55%;
+  }
+
+  100% {
+    background-position: 50% 50%;
+  }
+
+}
+
+#juego {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px 50px;
+  overflow: hidden;
+}
+
+#btn-volver { 
+  position: absolute; 
+  top: 84px; 
+  left: 80px; 
+  z-index: 15; 
+  text-decoration: none; 
+  font-weight: 800; 
+  font-size: 18px; 
+  background: #FFF9FF; 
+  color: #4B3294; 
+  border: 3px solid #4B3294; 
+  padding: 12px 28px; 
+  border-radius: 999px; 
+  box-shadow: 0 5px 0 #7046C8; 
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+} 
+ 
+#btn-volver:hover { 
+  background: #7f5ec8; 
+  transform: translateY(-4px) scale(1.05); 
+  box-shadow: 0 9px 0 #392878; 
+} 
+ 
+#btn-volver:active { 
+  transform: translateY(2px) scale(0.98); 
+  box-shadow: 0 2px 0 #392878; 
+} 
+ 
+/* Encabezado */ 
+#encabezado-juego { 
+  text-align: center; 
+  padding-top: 25px; 
+} 
+ 
+#encabezado-juego h1 { 
+  font-size: 55px; 
+  color: #FFF9FF; 
+  text-shadow: 3px 3px 0px #4B3294, 0 0 20px rgba(112, 70, 200, 0.4); 
+  letter-spacing: 3px; 
+  font-weight: 900; 
+} 
+ 
+#encabezado-juego p { 
+  margin-top: 32px; 
+  font-size: 16px; 
+  color: #F8EFFF; 
+  text-transform: uppercase; 
+  font-weight: 800; 
+  letter-spacing: 2px; 
+  text-shadow: 2px 2px 0px #4B3294; 
+} 
+ 
+/* HUD (Vidas y Puntos) */ 
+#hud-juego { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  width: 100%; 
+  padding: 0 30px; 
+} 
+ 
+#vidas { 
+  display: flex; 
+  gap: 10px; 
+  padding: 10px 24px; 
+  background: rgba(255, 249, 255, 0.95); 
+  border-radius: 999px; 
+  border: 3px solid #4B3294; 
+  box-shadow: 0 5px 0 #4B3294; 
+  font-size: 24px; 
+} 
+ 
+#puntaje { 
+  padding: 12px 28px; 
+  background: rgba(255, 249, 255, 0.95); 
+  border-radius: 999px; 
+  border: 3px solid #4B3294; 
+  font-weight: 800; 
+  color: #4B3294; 
+  box-shadow: 0 5px 0 #4B3294; 
+  font-size: 18px; 
+  letter-spacing: 0.5px; 
+} 
+ 
+#vidas span.vida { 
+  color: #b15ed8; 
+  text-shadow: 0 0 8px rgba(167, 65, 198, 0.6); 
+  transition: all 0.3s ease; 
+} 
+ 
+/* Corazones perdidos */ 
+#vidas span.vida-perdida { 
+  color: #8065B0; 
+  opacity: 0.3; 
+  transform: scale(0.85); 
+  transition: all 0.3s ease; 
+} 
+ 
+/* Zona de la palabra */ 
+#zona-palabra { 
+  text-align: center; 
+  padding: 10px 0; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  gap: 15px; 
+} 
+ 
+#palabra-mostrada { 
+  font-size: 72px; 
+  letter-spacing: 20px; 
+  color: #FFF9FF; 
+  text-shadow: 4px 4px 0px #4B3294, 0 0 25px rgba(255, 249, 255, 0.8); 
+  font-weight: 900; 
+} 
+ 
+/* Pista */ 
+#pista-espanol { 
+  font-size: 18px; 
+  color: #4B3294; 
+  font-weight: 800; 
+  background: #FFF9FF; 
+  padding: 8px 24px; 
+  border-radius: 999px; 
+  border: 3px solid #4B3294; 
+  box-shadow: 0 4px 0 #4B3294; 
+  display: inline-block; 
+} 
+ 
+/* Controles e input */ 
+#controles { 
+  display: flex; 
+  justify-content: center; 
+  padding-bottom: 30px; 
+} 
+ 
+#input-letras { 
+  width: 60%; 
+  max-width: 550px; 
+  padding: 18px 28px; 
+  text-align: center; 
+  outline: none; 
+  background: #FFF9FF; 
+  border: 3px solid #4B3294; 
+  border-radius: 999px; 
+  font-size: 18px; 
+  font-weight: 800; 
+  color: #4B3294; 
+  box-shadow: inset 0 3px 6px rgba(0,0,0,0.06), 0 6px 0 #4B3294; 
+  transition: all 0.2s ease; 
+} 
+ 
+#input-letras::placeholder { 
+  color: #814bd6; 
+  font-weight: 700; 
+} 
+ 
+#input-letras:focus { 
+  transform: translateY(-2px); 
+  box-shadow: inset 0 3px 6px rgba(0,0,0,0.06), 0 8px 0 #4B3294; 
+} 
+
+/* ==============================
+   PANTALLAS DE VICTORIA Y FIN
+============================== */
+
+#pantalla-victoria,
+#pantalla-fin {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  background: rgba(10, 10, 25, 0.85);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  text-align: center;
+}
+
+#pantalla-victoria h2,
+#pantalla-fin h2 {
+  font-size: 40px;
+  margin: 0;
+}
+
+#pantalla-victoria p,
+#pantalla-fin p {
+  font-size: 18px;
+  margin: 0;
+}
+
+#puntaje-victoria,
+#puntaje-final {
+  font-weight: bold;
+}
+
+/* Botones */
+
+#btn-seguir-jugando,
+#btn-reiniciar {
+  padding: 12px 28px;
+  border: none;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #81bdfc, #64b4f6);
+  color: #1b1440;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(82, 146, 209, 0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#btn-seguir-jugando:hover,
+#btn-reiniciar:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(79, 147, 202, 0.6);
+}
+
+/* Ocultar */
+
+.oculto {
+  display: none !important;
+}
+
+/* ==========================================
+   ADAPTABILIDAD PARA CELULARES
+   ========================================== */
+
+@media (max-width: 600px) {
+
+  /* ===== FONDO ===== */
+
+  body {
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+  }
+
+
+  /* ===== CONTENEDOR PRINCIPAL ===== */
+
+  #juego {
+    width: 100%;
+    height: 100vh;
+    min-height: 100vh;
+    padding: 15px 16px;
+    justify-content: space-between;
+  }
+
+
+  /* ===== BOTÓN VOLVER ===== */
+
+  #btn-volver {
+    top: 15px;
+    left: 15px;
+    font-size: 14px;
+    padding: 8px 16px;
+    border-width: 2px;
+    box-shadow: 0 4px 0 #7046C8;
+  }
+
+  #btn-volver:hover {
+    transform: none;
+  }
+
+  #btn-volver:active {
+    transform: translateY(2px) scale(0.98);
+  }
+
+
+  /* ===== ENCABEZADO ===== */
+
+  #encabezado-juego {
+    padding-top: 65px;
+  }
+
+  #encabezado-juego h1 {
+    font-size: 34px;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 0px #4B3294,
+                 0 0 12px rgba(112, 70, 200, 0.4);
+  }
+
+  #encabezado-juego p {
+    margin-top: 12px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    padding: 0 10px;
+  }
+
+
+  /* ===== HUD ===== */
+
+  #hud-juego {
+    width: 100%;
+    padding: 0 5px;
+    gap: 10px;
+  }
+
+  #vidas {
+    gap: 5px;
+    padding: 7px 13px;
+    border-width: 2px;
+    box-shadow: 0 4px 0 #4B3294;
+    font-size: 18px;
+  }
+
+  #puntaje {
+    padding: 8px 14px;
+    border-width: 2px;
+    box-shadow: 0 4px 0 #4B3294;
+    font-size: 14px;
+  }
+
+
+  /* ===== ZONA DE LA PALABRA ===== */
+
+  #zona-palabra {
+    width: 100%;
+    padding: 5px 0;
+    gap: 12px;
+  }
+
+  #palabra-mostrada {
+    max-width: 100%;
+    font-size: clamp(32px, 10vw, 52px);
+    letter-spacing: clamp(5px, 2vw, 12px);
+    word-break: break-word;
+    text-shadow: 3px 3px 0px #4B3294,
+                 0 0 18px rgba(255, 249, 255, 0.8);
+  }
+
+
+  /* ===== PISTA ===== */
+
+  #pista-espanol {
+    max-width: 90%;
+    font-size: 14px;
+    padding: 7px 16px;
+    border-width: 2px;
+    box-shadow: 0 3px 0 #4B3294;
+  }
+
+
+  /* ===== INPUT ===== */
+
+  #controles {
+    width: 100%;
+    padding-bottom: 15px;
+  }
+
+  #input-letras {
+    width: 95%;
+    max-width: none;
+    padding: 14px 18px;
+    border-width: 2px;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.06),
+                0 5px 0 #4B3294;
+    font-size: 16px;
+  }
+
+  #input-letras:focus {
+    transform: translateY(-1px);
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.06),
+                0 6px 0 #4B3294;
+  }
+
+
+  /* ===== PANTALLAS DE VICTORIA Y FIN ===== */
+
+  #pantalla-victoria,
+  #pantalla-fin {
+    padding: 20px;
+    gap: 12px;
+  }
+
+  #pantalla-victoria h2,
+  #pantalla-fin h2 {
+    font-size: 30px;
+  }
+
+  #pantalla-victoria p,
+  #pantalla-fin p {
+    max-width: 90%;
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+
+  /* ===== BOTONES FINALES ===== */
+
+  #btn-seguir-jugando,
+  #btn-reiniciar {
+    width: auto;
+    max-width: 90%;
+    padding: 11px 22px;
+    font-size: 14px;
+  }
+
+  #btn-seguir-jugando:hover,
+  #btn-reiniciar:hover {
+    transform: none;
+  }
+
+}

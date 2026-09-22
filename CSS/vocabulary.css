@@ -1,0 +1,299 @@
+/* ============================================
+   VOCABULARY
+   ============================================ */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Nunito', 'Segoe UI', 'Trebuchet MS', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 24px;
+
+    background:
+        radial-gradient(
+            ellipse at 20% 10%,
+            rgba(120, 140, 255, 0.15),
+            transparent 55%
+        ),
+        url("../IMG/fondovocabulary.png") center / 140% 140% no-repeat;
+
+    animation: moverFondo 15s ease-in-out infinite alternate;
+}
+
+@keyframes moverFondo {
+    from {
+        background-position: 40% 50%;
+    }
+
+    to {
+        background-position: 60% 50%;
+    }
+}
+
+/* ---------- Contenedor ---------- */
+
+.pantalla {
+    width: 100%;
+    max-width: 1200px;
+    padding: 40px 24px 0px;
+}
+
+/* ---------- Encabezado ---------- */
+
+.encabezado {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.encabezado .ojo-titulo {
+    display: inline-block;
+    margin-bottom: 14px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #ffd75e;
+}
+
+.encabezado h1 {
+    margin-bottom: 18px;
+    font-family: 'Baloo 2', 'Segoe UI', sans-serif;
+    font-size: 52px;
+    font-weight: 800;
+    line-height: 1.05;
+    color: #fff;
+    text-shadow: 0 0 26px rgba(255, 224, 102, 0.55), 0 0 60px rgba(120, 140, 255, 0.35);
+}
+
+.encabezado p {
+    font-size: 17px;
+    font-weight: 600;
+    color: #c3d0f0;
+}
+
+/* ============================================
+   BOTON
+   ============================================ */
+main.pantalla{ position: relative; }
+#btn-volver-menu{
+            position: absolute;
+            top: 35px;
+            left: 24px;
+            z-index: 5;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #f1e6ff;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: bold;
+            background: rgba(90, 52, 123, 0.752);
+            backdrop-filter: blur(6px);
+            padding: 10px 20px;
+            border-radius: 24px;
+            border: 1px solid rgba(56, 35, 89, 0.4);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+            transition: all 0.2s ease;
+        }
+        #btn-volver-menu:hover{
+            background: rgba(104, 62, 143, 0.603);
+            transform: translateY(-2px);
+        }
+
+/* ============================================
+   TARJETAS
+   ============================================ */
+   
+.grid-temas {
+    display: grid;
+    grid-template-columns: repeat(3, 200px);
+    justify-content: center;
+    gap: 80px;
+    width: 100%;
+    padding: 15px 30px;
+}
+
+.tarjeta-tema {
+    width: 230px;
+    height: 230px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 20px var(--color-tema-suave), 0 18px 30px rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tarjeta-tema:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 0 25px var(--color-tema), 0 0 45px var(--color-tema-suave), 0 25px 40px rgba(0, 0, 0, 0.45);
+}
+
+.ilustracion {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.ilustracion img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: fill;
+}
+
+.tarjeta-tema:nth-child(4) {
+    grid-column: 1 / 2;
+    margin-left: 120px;
+}
+
+.tarjeta-tema:nth-child(5) {
+    grid-column: 2 / 3;
+    margin-left: 120px;
+}
+
+
+/* ============================================
+   ADAPTABILIDAD PARA CELULARES
+   ============================================ */
+
+    @media (max-width: 600px) {
+
+    /* ---------- Fondo y cuerpo ---------- */
+
+    body {
+        min-height: 100vh;
+        padding: 15px;
+        overflow-x: hidden;
+        background-size: 180% 180%;
+    }
+
+    /* ---------- Contenedor principal ---------- */
+
+    .pantalla {
+        width: 100%;
+        max-width: 100%;
+        padding: 80px 5px 25px;
+    }
+
+    /* ---------- Botón volver ---------- */
+
+    #btn-volver-menu {
+        top: 15px;
+        left: 5px;
+        padding: 8px 14px;
+        font-size: 13px;
+        gap: 5px;
+    }
+
+    /* ---------- Encabezado ---------- */
+
+    .encabezado {
+        margin-bottom: 30px;
+        padding: 0 5px;
+    }
+
+    .encabezado .ojo-titulo {
+        font-size: 10px;
+        letter-spacing: 2px;
+        margin-bottom: 8px;
+    }
+
+    .encabezado h1 {
+        font-size: clamp(32px, 10vw, 40px);
+        line-height: 1.05;
+        margin-bottom: 12px;
+    }
+
+    .encabezado p {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    /* ---------- Grid de tarjetas ---------- */
+
+    .grid-temas {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 25px;
+        width: 100%;
+        padding: 10px 0 30px;
+    }
+
+    /* ---------- Tarjetas ---------- */
+
+    .tarjeta-tema {
+        width: min(230px, 78vw);
+        height: min(230px, 78vw);
+        justify-self: center;
+    }
+
+    /* ---------- Quitar posiciones especiales del PC ---------- */
+
+    .tarjeta-tema:nth-child(4),
+    .tarjeta-tema:nth-child(5) {
+        grid-column: auto;
+        margin-left: 0;
+    }
+
+    /* ---------- Hover más pequeño en celular ---------- */
+
+    .tarjeta-tema:hover {
+        transform: translateY(-5px) scale(1.02);
+    }
+}
+
+
+/* ============================================
+   CELULARES MUY PEQUEÑOS
+   ============================================ */
+
+@media (max-width: 380px) {
+
+    body {
+        padding: 10px;
+        background-size: 200% 200%;
+    }
+
+    .pantalla {
+        padding: 75px 0 20px;
+    }
+
+    #btn-volver-menu {
+        top: 10px;
+        left: 0;
+        padding: 7px 12px;
+        font-size: 12px;
+    }
+
+    .encabezado {
+        margin-bottom: 25px;
+    }
+
+    .encabezado h1 {
+        font-size: 30px;
+    }
+
+    .encabezado p {
+        font-size: 13px;
+    }
+
+    .grid-temas {
+        gap: 20px;
+    }
+
+    .tarjeta-tema {
+        width: 75vw;
+        height: 75vw;
+        max-width: 210px;
+        max-height: 210px;
+    }
+}

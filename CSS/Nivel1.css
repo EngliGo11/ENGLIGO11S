@@ -1,0 +1,672 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Nunito', sans-serif;
+  background-image: url("../IMG/fondolessonslevels.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url("../IMG/fondolessonslevels.png") center / cover no-repeat;
+  z-index: -1;
+  animation: moverFondo 10s ease-in-out infinite alternate;
+}
+
+@keyframes moverFondo {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.05);
+  }
+}
+
+/* =========================
+   ENCABEZADO
+========================= */
+
+.encabezado-nivel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 80px 16px 0px;
+}
+
+.titulo-nivel {
+  text-align: center;
+  color: #fffffe;
+  font-size: 58px;
+  text-shadow: 0 0 8px #eeedecc3,
+               0 0 18px #eeedecc3,
+               0 0 28px #eeedecc3;
+}
+
+.subtitulo-nivel {
+  display: block;
+  margin-top: 5px;
+  color: #f7f4ff;
+  font-size: 28px;
+  text-shadow: 0 0 5px #fffbf2c3,
+               0 0 15px #fffbf2c3,
+               0 0 25px #fffbf2c3;
+}
+
+/* ==========================
+   HUD
+========================== */
+
+.hud {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  font-size: 16px;
+  margin-right: 80px;
+}
+
+.vidas {
+  display: inline-block;
+  padding: 10px 18px;
+  padding-right: 0;
+  background: rgba(53, 28, 127, 0.66);
+  border: 2px solid #6c4bd1;
+  border-radius: 12px;
+  font-size: 26px;
+  letter-spacing: 15px;
+  box-shadow:
+    0 0 8px rgba(108, 75, 209, 0.5);
+  transition: 0.2s;
+}
+
+.vidas span {
+  color: #ff6b8a;
+  text-shadow:
+    0 0 4px #ff6b8a,
+    0 0 8px #ff6b8a;
+}
+
+.vidas span.perdio {
+  color: #903041;
+  text-shadow:
+    0 0 4px #83293a,
+    0 0 8px #83293a;
+}
+
+.puntaje {
+  padding: 9px 18px;
+  background: rgba(53, 28, 127, 0.66);
+  border: 2px solid #6c4bd1;
+  border-radius: 10px;
+  color: #f7f4ff;
+  font-size: 16px;
+  box-shadow: 0 0 8px rgba(108, 75, 209, 0.5);
+}
+
+.puntaje span {
+  color: #6c4bd1;
+  font-weight: bold;
+}
+
+/* ==========================
+   BOTON
+========================== */
+
+.boton-volver {
+  color: #f7f4ff;
+  text-decoration: none;
+  padding: 10px 16px;
+  margin-top: 70px;
+  margin-left: 120px;
+  background: rgba(53, 28, 127, 0.66);
+  border: 2px solid #6c4bd1;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: bold;
+  box-shadow: 0 0 8px rgba(108, 75, 209, 0.5);
+  transition: 0.2s;
+}
+
+.boton-volver:hover {
+  background: rgba(108, 75, 209, 0.5);
+  transform: scale(1.05);
+}
+
+/* =========================
+   CONTENEDOR DEL JUEGO
+========================= */
+
+.contenedor-juego {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 45px 16px 20px;
+}
+
+.instruccion {
+  margin: 0 auto 20px;
+  max-width: 700px;
+  padding: 10px 18px;
+  text-align: center;
+  font-family: 'Nunito', sans-serif;
+  font-size: 20px;
+  line-height: 1.5;
+  color: #eee8ff;
+  background: rgba(53, 28, 127, 0.45);
+  border: 1px solid rgba(150, 120, 255, 0.45);
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(108, 75, 209, 0.25);
+}
+
+.area-juego {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 48px;
+}
+
+/* =========================
+   IMAGEN DEL NIÑO
+========================= */
+
+.imagen-nino {
+  position: relative;
+  width: min(95vw, 460px);
+  aspect-ratio: 620 / 615;
+  flex-shrink: 0;
+  overflow: visible;
+  border-radius: 24px;
+}
+
+.imagen-nino img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* =========================
+   PUNTOS
+========================= */
+
+.punto-drop {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 17%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%) translate(-2px, 0px);
+  transform-origin: center;
+  border: 2px dashed rgba(255, 255, 255, .7);
+  border-radius: 50%;
+  background: rgba(108, 75, 209, .28);
+  font-size: 0;
+  transition: .2s ease;
+}
+
+.punto-drop.correcto {
+  border: 2px solid #c9b5ff;
+  background: #7651d9;
+  box-shadow:
+    0 0 0 3px rgba(118, 81, 217, .25),
+    0 0 14px rgba(155, 125, 255, .75);
+  font-size: 0;
+  animation: aparecerCorrecto .35s ease-out;
+}
+
+.punto-drop.correcto::after {
+  content: "✓";
+  font-family: Arial, sans-serif;
+  font-size: 19px;
+  font-weight: 900;
+  color: white;
+  text-shadow: 0 1px 3px rgba(50, 30, 100, .35);
+  animation: aparecerChulo .3s ease-out .12s both;
+}
+
+@keyframes aparecerCorrecto {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+  }
+
+  70% {
+    transform: translate(-50%, -50%) scale(1.08);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes aparecerChulo {
+  0% {
+    opacity: 0;
+    transform: scale(.3);
+  }
+
+  70% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* =========================
+   BANCO DE ETIQUETAS
+========================= */
+
+.banco-etiquetas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: flex-start;
+  gap: 12px;
+  width: min(90vw, 320px);
+}
+
+.etiqueta-arrastrable {
+  padding: 10px 18px;
+  border: 2px solid #9B82D7;
+  border-radius: 13px;
+  background: #bb7ef75a;
+  box-shadow: 2px 3px 0 #8068B8;
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  transition: .2s ease;
+}
+
+.etiqueta-arrastrable:hover {
+  transform: translateY(-3px);
+  background: #9c82d77e;
+  box-shadow: 2px 5px 0 #8068B8;
+}
+
+.etiqueta-arrastrable:active {
+  cursor: grabbing;
+}
+
+.etiqueta-arrastrable.arrastrando {
+  position: fixed;
+  z-index: 999;
+  pointer-events: none;
+  transform: scale(1.08) rotate(-2deg);
+  box-shadow: 4px 7px 12px rgba(71, 4, 133, .3);
+}
+
+.etiqueta-arrastrable.usada {
+  display: none;
+}
+
+.etiqueta-arrastrable.rechazada {
+  background: #9c82d77e;
+  color: white;
+  animation: sacudir .35s ease;
+}
+
+@keyframes sacudir {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-6px);
+  }
+
+  75% {
+    transform: translateX(6px);
+  }
+}
+
+/* ============================================
+    PANTALLAS DE VICTORIA Y DERROTA
+    ============================================ */
+
+.pantalla-flotante {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(27, 16, 82, 0.674);
+  z-index: 1000;
+}
+
+.pantalla-flotante:not([hidden]) {
+  display: flex;
+}
+
+.pantalla-flotante .pantalla-contenido {
+  width: 100%;
+  max-width: 340px;
+  padding: 28px 30px;
+  text-align: center;
+  background: #1b1245d8;
+  border: 3px solid #5233afae;
+  border-radius: 20px;
+}
+
+.pantalla-flotante .pantalla-contenido h2 {
+  margin: 0 0 12px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.pantalla-flotante .pantalla-contenido p {
+  margin: 0 0 16px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #ffff;
+}
+
+.pantalla-flotante .boton-primario {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 11px 24px;
+  background: #5d4de8;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.pantalla-flotante .boton-primario:hover {
+  background: #7665f5;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(118, 101, 245, 0.5);
+}
+
+ /* ==========================================
+    ADAPTABILIDAD PARA TABLETS Y CELULARES
+========================================== */
+
+@media (max-width: 768px) {
+
+    body {
+        min-height: 100vh;
+        overflow-x: hidden;
+    }
+
+    /* =========================
+       ENCABEZADO
+    ========================= */
+
+    .encabezado-nivel {
+        flex-direction: column;
+        padding: 30px 15px 0;
+        gap: 20px;
+    }
+
+    .titulo-nivel {
+        font-size: 40px;
+        line-height: 1.1;
+    }
+
+    .subtitulo-nivel {
+        margin-top: 4px;
+        font-size: 21px;
+    }
+
+    /* =========================
+       HUD
+    ========================= */
+
+    .hud {
+        margin-right: 0;
+        gap: 10px;
+        font-size: 14px;
+    }
+
+    .vidas {
+        padding: 7px 12px;
+        padding-right: 0;
+        font-size: 21px;
+        letter-spacing: 9px;
+        border-radius: 10px;
+    }
+
+    .puntaje {
+        padding: 7px 13px;
+        font-size: 14px;
+    }
+
+    /* =========================
+       BOTÓN VOLVER
+    ========================= */
+
+    .boton-volver {
+        margin-top: 0;
+        margin-left: 0;
+        padding: 8px 13px;
+        font-size: 13px;
+    }
+
+    /* =========================
+       CONTENEDOR DEL JUEGO
+    ========================= */
+
+    .contenedor-juego {
+        width: 100%;
+        max-width: 100%;
+        padding: 25px 15px 20px;
+    }
+
+    .instruccion {
+        width: 100%;
+        max-width: 600px;
+        padding: 9px 14px;
+        font-size: 16px;
+        line-height: 1.4;
+    }
+
+    .area-juego {
+        gap: 25px;
+    }
+
+    /* =========================
+       IMAGEN DEL NIÑO
+    ========================= */
+
+    .imagen-nino {
+        width: min(85vw, 400px);
+    }
+
+    /* =========================
+       BANCO DE ETIQUETAS
+    ========================= */
+
+    .banco-etiquetas {
+        width: min(90vw, 400px);
+        gap: 9px;
+    }
+
+    .etiqueta-arrastrable {
+        padding: 9px 14px;
+        font-size: 14px;
+        border-radius: 11px;
+    }
+
+    /* =========================
+       PANTALLA FINAL
+    ========================= */
+
+    .pantalla-flotante {
+        padding: 15px;
+    }
+
+    .pantalla-flotante .pantalla-contenido {
+        max-width: 330px;
+        padding: 24px 20px;
+        border-radius: 18px;
+    }
+
+    .pantalla-flotante .pantalla-contenido h2 {
+        font-size: 24px;
+    }
+
+    .pantalla-flotante .pantalla-contenido p {
+        font-size: 14px;
+    }
+
+    .pantalla-flotante .boton-primario {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}
+
+
+/* ==========================================
+   CELULARES PEQUEÑOS
+========================================== */
+
+@media (max-width: 480px) {
+
+    body {
+        overflow-x: hidden;
+    }
+
+    /* =========================
+       ENCABEZADO
+    ========================= */
+
+    .encabezado-nivel {
+        padding: 20px 10px 0;
+        gap: 14px;
+    }
+
+    .titulo-nivel {
+        font-size: 30px;
+    }
+
+    .subtitulo-nivel {
+        font-size: 17px;
+    }
+
+    /* =========================
+       HUD
+    ========================= */
+
+    .hud {
+        gap: 8px;
+    }
+
+    .vidas {
+        padding: 6px 9px;
+        padding-right: 0;
+        font-size: 18px;
+        letter-spacing: 6px;
+    }
+
+    .puntaje {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+
+    /* =========================
+       BOTÓN VOLVER
+    ========================= */
+
+    .boton-volver {
+        padding: 7px 11px;
+        font-size: 12px;
+    }
+
+    /* =========================
+       JUEGO
+    ========================= */
+
+    .contenedor-juego {
+        padding: 18px 10px 15px;
+    }
+
+    .instruccion {
+        padding: 8px 11px;
+        font-size: 14px;
+        line-height: 1.35;
+        border-radius: 10px;
+    }
+
+    .area-juego {
+        gap: 18px;
+    }
+
+    /* =========================
+       IMAGEN
+    ========================= */
+
+    .imagen-nino {
+        width: min(88vw, 330px);
+    }
+
+    /* =========================
+       ETIQUETAS
+    ========================= */
+
+    .banco-etiquetas {
+        width: 95%;
+        gap: 7px;
+    }
+
+    .etiqueta-arrastrable {
+        padding: 8px 11px;
+        font-size: 13px;
+        border-radius: 10px;
+    }
+
+    /* =========================
+       PANTALLA FINAL
+    ========================= */
+
+    .pantalla-flotante {
+        padding: 10px;
+    }
+
+    .pantalla-flotante .pantalla-contenido {
+        width: 100%;
+        max-width: 300px;
+        padding: 20px 15px;
+    }
+
+    .pantalla-flotante .pantalla-contenido h2 {
+        font-size: 21px;
+    }
+
+    .pantalla-flotante .pantalla-contenido p {
+        font-size: 13px;
+    }
+
+    .pantalla-flotante .boton-primario {
+        padding: 9px 17px;
+        font-size: 13px;
+    }
+}

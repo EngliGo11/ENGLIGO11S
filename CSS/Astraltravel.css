@@ -1,0 +1,326 @@
+/* =========================
+  ESTRUCTURA GENERAL
+========================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--fuente-cuerpo);
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: url("../IMG/fondolessons.png") center / cover no-repeat;
+  animation: zoomFondo 25s ease-in-out infinite alternate;
+}
+
+@keyframes zoomFondo {
+  0% {
+    background-size: 100% 100%;
+  }
+
+  100% {
+    background-size: 108% 108%;
+  }
+}
+
+/* =========================
+   BOTÓN VOLVER
+========================= */
+
+#btn-volver {
+  position: absolute;
+  top: 58px;
+  left: 110px;
+  padding: 10px 18px;
+  border: 2px solid white;
+  border-radius: 20px;
+  background: rgba(194, 133, 229, 0.507);
+  color: white;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: 0.2s;
+}
+
+#btn-volver:hover {
+  background: rgba(163, 71, 179, 0.475);
+  transform: translateY(-2px);
+}
+
+/* =========================
+  ENCABEZADO
+========================= */
+
+#encabezado {
+  text-align: center;
+  padding: 90px 20px 20px;
+  color: white;
+}
+
+#encabezado h1 {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: 42px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: white;
+  text-shadow: 0 0 8px white, 0 0 18px white;
+}
+
+#encabezado p {
+  margin-top: 15px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: white;
+  text-shadow: 0 0 6px white;
+}
+
+/* =========================
+  TARJETAS
+========================= */
+
+#gridNiveles {
+  display: grid;
+  grid-template-columns: repeat(3, 230px);
+  justify-content: center;
+  gap: 120px;
+  row-gap: 20px;
+  padding: 55px 25px 0px;
+}
+
+#gridNiveles .tarjeta-nivel:nth-child(4) {
+  grid-column: 1 / 2;
+  margin-left: 200px;
+}
+
+#gridNiveles .tarjeta-nivel:nth-child(5) {
+  grid-column: 2 / 3;
+  margin-left: 200px;
+}
+
+.tarjeta-nivel {
+  width: 270px;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 22px;
+  background: transparent;
+  transition: 0.3s ease;
+}
+
+.tarjeta-nivel:hover {
+    filter: 
+      drop-shadow(0 0 4px var(--color-aura))
+      drop-shadow(0 0 5px var(--color-aura));
+    transform: scale(1.03);
+}
+
+.tarjeta-nivel:active {
+  transform: translateY (-3px) scale(0.99);
+}
+
+.ilustracion-nivel {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: transparent;
+}
+
+.ilustracion-nivel img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* =========================
+  CANDADO
+========================= */
+
+.ilustracion-nivel {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ilustracion-nivel img.imagen-candado {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  object-fit: contain;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  z-index: 2;
+  background: transparent;
+  border: none;
+  filter: drop-shadow(0 4px 7px rgba(0, 0, 0, 0.45));
+}
+
+
+/* ==========================================
+   RESPONSIVE - TABLETS Y CELULARES
+========================================== */
+
+@media (max-width: 800px) {
+
+    body {
+        overflow-x: hidden;
+        background-size: cover;
+        background-attachment: scroll;
+    }
+
+    /* BOTÓN VOLVER */
+
+    #btn-volver {
+        position: relative;
+        display: inline-block;
+        top: auto;
+        left: auto;
+        margin: 20px 20px 0;
+        padding: 9px 16px;
+        font-size: 12px;
+    }
+
+    /* ENCABEZADO */
+
+    #encabezado {
+        padding: 40px 20px 15px;
+    }
+
+    #encabezado h1 {
+        font-size: 34px;
+        line-height: 1.2;
+        letter-spacing: 1px;
+    }
+
+    #encabezado p {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    /* GRID DE NIVELES */
+
+    #gridNiveles {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        justify-content: center;
+        gap: 25px 15px;
+        padding: 35px 20px 50px;
+    }
+
+    #gridNiveles .tarjeta-nivel:nth-child(4),
+    #gridNiveles .tarjeta-nivel:nth-child(5) {
+        grid-column: auto;
+        margin-left: 0;
+    }
+
+    .tarjeta-nivel {
+        width: 100%;
+        max-width: 230px;
+        justify-self: center;
+    }
+
+    .tarjeta-nivel:hover {
+        transform: scale(1.02);
+    }
+
+    .ilustracion-nivel img.imagen-candado {
+        width: 55px;
+        height: 55px;
+    }
+}
+
+
+/* ==========================================
+   RESPONSIVE - CELULARES PEQUEÑOS
+========================================== */
+
+@media (max-width: 600px) {
+
+    /* BOTÓN VOLVER */
+
+    #btn-volver {
+        margin: 15px 15px 0;
+        padding: 8px 14px;
+        font-size: 12px;
+    }
+
+    /* ENCABEZADO */
+
+    #encabezado {
+        padding: 30px 15px 10px;
+    }
+
+    #encabezado h1 {
+        font-size: 28px;
+        letter-spacing: 0.5px;
+    }
+
+    #encabezado p {
+        margin-top: 10px;
+        font-size: 12px;
+    }
+
+    /* GRID */
+
+    #gridNiveles {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px 10px;
+        padding: 25px 12px 40px;
+    }
+
+    .tarjeta-nivel {
+        width: 100%;
+        max-width: 190px;
+        border-radius: 16px;
+    }
+
+    .ilustracion-nivel img.imagen-candado {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+
+/* ==========================================
+   CELULARES MUY PEQUEÑOS
+========================================== */
+
+@media (max-width: 400px) {
+
+    #btn-volver {
+        margin: 12px 12px 0;
+    }
+
+    #encabezado {
+        padding: 25px 12px 10px;
+    }
+
+    #encabezado h1 {
+        font-size: 24px;
+    }
+
+    #encabezado p {
+        font-size: 11px;
+    }
+
+    #gridNiveles {
+        gap: 15px 8px;
+        padding: 20px 10px 35px;
+    }
+
+    .tarjeta-nivel {
+        max-width: 165px;
+    }
+
+    .ilustracion-nivel img.imagen-candado {
+        width: 38px;
+        height: 38px;
+    }
+}

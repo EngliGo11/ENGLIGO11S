@@ -1,0 +1,370 @@
+/* ============================================
+   VOCABULARY-ACTIVITIES
+   ============================================ */
+
+:root {
+  --nebulosa-morado: #8A6CF0;
+  --nebulosa-azul-oscuro: #171A45;
+  --azul-cielo: #95c1ff;
+  --hielo-medio: #4FB8DE;
+  --hielo-oscuro: #2E8FC2;
+  --roca-oscura: #66cdda;
+  --texto-claro: #F4F1FF;
+  --texto-suave: #C3CBEF;
+  --blanco-nube: #FFFFFF;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Nunito', 'Segoe UI', sans-serif;
+}
+
+body {
+  position: relative;
+  background-image:
+    linear-gradient(180deg, rgba(10, 8, 30, 0.15) 0%, rgba(10, 8, 30, 0.45) 100%),
+    url('../IMG/fondovocabulary.png');
+  background-size: 115% auto, 115% auto;
+  background-position: center bottom, center bottom;
+  background-repeat: no-repeat, no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+  min-height: 100vh;
+  overflow-x: hidden;
+  animation: deriva-fondo 15s ease-in-out infinite alternate;
+}
+
+@keyframes deriva-fondo {
+  0% {
+    background-position: center bottom, center bottom;
+  }
+
+  50% {
+    background-position: center bottom, 52% bottom;
+  }
+
+  100% {
+    background-position: center bottom, center bottom;
+  }
+}
+
+/* ---------- Panel principal---------- */
+
+.pantalla {
+  width: 100%;
+  max-width: 420px;
+  min-height: 740px;
+  background: linear-gradient(180deg, rgba(23, 26, 69, 0.35) 0%, rgba(15, 14, 45, 0.45) 100%);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 32px;
+  padding: 24px 18px 32px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(127, 227, 239, 0.18);
+  box-shadow:
+    0 0 70px rgba(138, 108, 240, 0.2),
+    0 24px 45px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+/* ---------- Botón de volver ---------- */
+
+.boton-volver {
+  position: absolute;
+  top: 18px;
+  left: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid var(--hielo-claro);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: var(--texto-claro);
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  z-index: 2;
+  box-shadow: 0 4px 0 rgba(127, 227, 239, 0.3);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.boton-volver:hover {
+  background: rgba(127, 227, 239, 0.18);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 0 rgba(127, 227, 239, 0.3);
+}
+
+.boton-volver:active {
+  transform: translateY(2px) scale(0.98);
+  box-shadow: 0 2px 0 rgba(127, 227, 239, 0.3);
+}
+
+/* ---------- Encabezado ---------- */
+
+.encabezado {
+  text-align: center;
+  margin: 44px 0 46px;
+  position: relative;
+  z-index: 1;
+}
+
+.encabezado h1 {
+  font-family: 'Fredoka', 'Nunito', sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--texto-claro);
+  text-shadow: 0 0 20px rgba(138, 108, 240, 0.7);
+}
+
+.encabezado p {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--texto-suave);
+  margin-top: 6px;
+}
+
+/* ---------- Grid de tarjetas ---------- */
+
+.grid-tarjetas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 38px;
+  position: relative;
+  z-index: 1;
+}
+
+.tarjeta {
+  background: linear-gradient(160deg, rgba(23, 26, 69, 0.35), rgba(138, 108, 240, 0.08));
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 18px 8px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+  animation: rebote-entrada 0.4s ease backwards;
+}
+
+.tarjeta:hover {
+  transform: translateY(-4px) scale(1.03);
+  border-color: var(--color-tarjeta);
+  background: linear-gradient(160deg, rgba(23, 26, 69, 0.4), color-mix(in srgb, var(--color-tarjeta) 18%, transparent));
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.4), 0 0 20px rgba(127, 227, 239, 0.15);
+}
+
+.tarjeta:active {
+  transform: scale(0.95) translateY(2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes rebote-entrada {
+  from { opacity: 0; transform: translateY(14px) scale(0.9); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.tarjeta .icono {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 2px dashed var(--color-tarjeta);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+}
+
+.tarjeta .palabra-ingles {
+  font-family: 'Fredoka', 'Nunito', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--texto-claro);
+}
+
+.tarjeta .palabra-espanol {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-tarjeta);
+  margin-top: 6px;
+  visibility: hidden;
+}
+
+.tarjeta.mostrar-traduccion .palabra-espanol {
+  visibility: visible;
+}
+
+/* ============================================
+   ADAPTABILIDAD PARA CELULARES
+   ============================================ */
+
+@media (max-width: 600px) {
+
+    /* ---------- FONDO ---------- */
+
+    body {
+        padding: 12px;
+        align-items: flex-start;
+
+        background-size: auto 100%, auto 100%;
+        background-position: center bottom, center bottom;
+    }
+
+
+    /* ---------- PANEL PRINCIPAL ---------- */
+
+    .pantalla {
+        width: 100%;
+        max-width: 100%;
+        min-height: calc(100vh - 24px);
+
+        padding: 20px 14px 28px;
+
+        border-radius: 24px;
+    }
+
+
+    /* ---------- BOTÓN VOLVER ---------- */
+
+    .boton-volver {
+        top: 14px;
+        left: 12px;
+
+        width: 38px;
+        height: 38px;
+
+        font-size: 17px;
+    }
+
+
+    /* ---------- ENCABEZADO ---------- */
+
+    .encabezado {
+        margin: 42px 0 30px;
+        padding: 0 8px;
+    }
+
+    .encabezado h1 {
+        font-size: 26px;
+        line-height: 1.15;
+    }
+
+    .encabezado p {
+        font-size: 13px;
+        line-height: 1.4;
+        margin-top: 7px;
+    }
+
+
+    /* ---------- GRID DE TARJETAS ---------- */
+
+    .grid-tarjetas {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        width: 100%;
+    }
+
+
+    /* ---------- TARJETAS ---------- */
+
+    .tarjeta {
+        padding: 16px 6px;
+
+        min-height: 145px;
+
+        border-radius: 17px;
+    }
+
+    .tarjeta:hover {
+        transform: translateY(-3px) scale(1.02);
+    }
+
+
+    /* ---------- ICONOS ---------- */
+
+    .tarjeta .icono {
+        width: 46px;
+        height: 46px;
+
+        margin-bottom: 8px;
+
+        font-size: 23px;
+    }
+
+
+    /* ---------- PALABRA EN INGLÉS ---------- */
+
+    .tarjeta .palabra-ingles {
+        font-size: 15px;
+        line-height: 1.2;
+    }
+
+
+    /* ---------- TRADUCCIÓN ---------- */
+
+    .tarjeta .palabra-espanol {
+        font-size: 12px;
+        margin-top: 5px;
+    }
+}
+
+
+/* ============================================
+   CELULARES MUY PEQUEÑOS
+   ============================================ */
+
+@media (max-width: 380px) {
+
+    body {
+        padding: 8px;
+    }
+
+    .pantalla {
+        padding: 18px 10px 24px;
+        border-radius: 20px;
+    }
+
+    .encabezado {
+        margin-top: 40px;
+        margin-bottom: 24px;
+    }
+
+    .encabezado h1 {
+        font-size: 23px;
+    }
+
+    .encabezado p {
+        font-size: 12px;
+    }
+
+    .grid-tarjetas {
+        gap: 12px;
+    }
+
+    .tarjeta {
+        min-height: 135px;
+        padding: 14px 5px;
+        border-radius: 15px;
+    }
+
+    .tarjeta .icono {
+        width: 42px;
+        height: 42px;
+        font-size: 21px;
+    }
+
+    .tarjeta .palabra-ingles {
+        font-size: 14px;
+    }
+
+    .tarjeta .palabra-espanol {
+        font-size: 11px;
+    }
+}

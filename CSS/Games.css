@@ -1,0 +1,232 @@
+/* =========================
+   CONFIGURACIÓN GENERAL
+========================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  min-height: 100vh;
+  color: white;
+  overflow-x: hidden;
+  background: url('../IMG/fondojuegos.png') center / cover no-repeat;
+  animation: moverFondo 5s ease-in-out infinite alternate;
+}
+
+@keyframes moverFondo {
+  from {
+    background-position: center;
+  }
+
+  to {
+    background-position: 100% 100%;
+  }
+}
+
+/* =========================
+   ENCABEZADO
+========================= */
+
+#encabezado {
+  text-align: center;
+  margin-left: 250px;
+  width: calc(100% - 250px);
+  padding: 65px 20px 99px;
+}
+
+#encabezado h1 {
+  font-size: 58px;
+  margin-bottom: 25px;
+  color: white;
+
+  text-shadow:
+    0 0 5px white,
+    0 0 12px #7c5cff,
+    0 0 25px #7c5cff,
+    0 0 45px #7c5cff;
+}
+
+#encabezado p {
+  font-size: 22px;
+  color: #f4f0ff;
+
+  text-shadow:
+    0 0 5px white,
+    0 0 12px #7c5cff,
+    0 0 22px #7c5cff;
+}
+
+
+/* =========================
+   GRID DE TARJETAS
+========================= */
+
+#gridTemas {
+  display: grid;
+  margin-left: 250px;
+  width: calc(100% - 250px);
+  grid-template-columns: repeat(3, 250px);
+  justify-content: center;
+  gap: 120px;
+  padding: 15px 30px;
+}
+
+/* =========================
+   TARJETAS
+========================= */
+
+.tarjeta-tema {
+  width: 300px;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+  background: #111;
+  box-shadow:
+    0 0 20px var(--color-tema-suave),
+    0 18px 30px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  transition:
+    transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tarjeta-tema:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow:
+    0 0 25px var(--color-tema),
+    0 0 45px var(--color-tema-suave),
+    0 25px 40px rgba(0, 0, 0, 0.45);
+}
+
+/* =========================
+   IMAGEN
+========================= */
+
+.ilustracion {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.ilustracion img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  display: block;
+  object-fit: fill;
+  transition: transform 0.4s ease;
+}
+
+/* =========================
+   ADAPTABILIDAD PARA CELULARES
+========================= */
+
+/* TABLETS Y PANTALLAS MEDIANAS */
+@media (max-width: 1000px) {
+
+  #encabezado {
+    margin-left: 0;
+    width: 100%;
+    padding: 45px 20px 60px;
+  }
+
+  #encabezado h1 {
+    font-size: 46px;
+  }
+
+  #encabezado p {
+    font-size: 19px;
+  }
+
+  #gridTemas {
+    margin-left: 0;
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(220px, 300px));
+    gap: 50px 30px;
+    padding: 15px 25px 40px;
+  }
+
+  .tarjeta-tema {
+    width: 100%;
+    max-width: 300px;
+    height: 300px;
+    justify-self: center;
+  }
+}
+
+
+/* CELULARES */
+@media (max-width: 600px) {
+
+  body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-attachment: scroll;
+  }
+
+  #encabezado {
+    padding: 35px 15px 40px;
+  }
+
+  #encabezado h1 {
+    font-size: clamp(30px, 8vw, 42px);
+    line-height: 1.15;
+    margin-bottom: 18px;
+  }
+
+  #encabezado p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  #gridTemas {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 10px 20px 40px;
+  }
+
+  .tarjeta-tema {
+    width: 100%;
+    max-width: 300px;
+    height: 300px;
+    justify-self: center;
+  }
+
+  .tarjeta-tema:hover {
+    transform: translateY(-5px) scale(1.02);
+  }
+}
+
+/* CELULARES PEQUEÑOS */
+@media (max-width: 400px) {
+
+  #encabezado {
+    padding: 25px 12px 30px;
+  }
+
+  #encabezado h1 {
+    font-size: 28px;
+  }
+
+  #encabezado p {
+    font-size: 14px;
+  }
+
+  #gridTemas {
+    gap: 25px;
+    padding: 10px 15px 30px;
+  }
+
+  .tarjeta-tema {
+    max-width: 270px;
+    height: 270px;
+  }
+}

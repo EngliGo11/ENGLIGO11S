@@ -1,0 +1,465 @@
+/* ==========================
+    CONFIGURACION GENERAL
+========================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    color: #ffffff;
+    overflow-x: hidden;
+    position: relative;
+    background-color: #0b0b1a;
+    background-image: url('../IMG/fondobody.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    animation: movimientoEspacial 10s ease-in-out infinite alternate;
+}
+
+@keyframes movimientoEspacial {
+    0% {
+        background-size: 100% 100%;
+    }
+
+    100% {
+        background-size: 130% 130%;
+    }
+}
+
+.contenido-final {
+    margin-left: 250px;
+    width: calc(100% - 200px);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ==========================
+   REGISTRARSE
+========================== */
+
+.register-btn {
+    position: fixed;
+    top: 22px;
+    right: 28px;
+    padding: 13px 30px;
+    color: #ffffff;
+    background: linear-gradient(
+        135deg,
+        #2946a8,
+        #5936c9,
+        #315de0
+    );
+    border: 2px solid rgba(180, 190, 255, 0.75);
+    border-radius: 16px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    box-shadow:
+        0 0 10px rgba(93, 91, 255, 0.45),
+        0 0 25px rgba(74, 104, 255, 0.25),
+        inset 0 1px 2px rgba(255, 255, 255, 0.35);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.register-btn:hover {
+    transform: translateY(-3px) scale(1.04);
+    background: linear-gradient(
+        135deg,
+        #3c5ee8,
+        #7545df,
+        #3b8cff
+    );
+    border-color: #ffffff;
+    box-shadow:
+        0 0 12px rgba(130, 130, 255, 0.8),
+        0 0 30px rgba(80, 120, 255, 0.6),
+        0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.register-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 70%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.35),
+        transparent
+    );
+    transform: skewX(-25deg);
+    transition: left 0.6s ease;
+}
+
+.register-btn:hover::before {
+    left: 140%;
+}
+
+/* ==========================
+   TÍTULO PRINCIPAL 
+========================== */
+
+.cards h2 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    text-align: center;
+    letter-spacing: 2px; 
+    text-transform: uppercase; 
+    margin-bottom: 180px;
+    background: linear-gradient(135deg, #ffffff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 20px rgba(0, 217, 255, 0.6))
+            drop-shadow(0 0 35px rgba(168, 85, 247, 0.4));
+    animation: brilloEspacial 10s ease-in-out infinite alternate;
+}
+
+@keyframes brilloEspacial {
+    0% {
+        filter: drop-shadow(0 0 18px rgba(0, 217, 255, 0.5))
+                drop-shadow(0 0 30px rgba(168, 85, 247, 0.3));
+    }
+    100% {
+        filter: drop-shadow(0 0 26px rgba(0, 217, 255, 0.8))
+                drop-shadow(0 0 45px rgba(168, 85, 247, 0.6));
+    }
+}
+
+/* ==========================
+   TARJETAS
+========================== */
+
+.cards {
+    padding: 100px 90px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contenedor-cards {
+    width: 100%;
+    max-width: 970px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 70px;
+    flex-wrap: nowrap;
+}
+
+.card {
+    width: 300px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    transition: filter 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card:hover img {
+    filter: drop-shadow(0 0 20px rgba(0, 217, 255, 0.6));
+}
+
+/* ==========================
+   FOOTER 
+========================== */
+
+.footer {
+    width: calc(100% + 400px);
+    margin-left: -200px;
+    margin-top: 220px;
+    padding: 30px 20px;
+    box-sizing: border-box;
+    text-align: center;
+    background: rgba(10, 25, 50, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(0, 217, 255, 0.25);
+}
+
+.footer h3, .footer p {
+    margin: 6px 0;
+}
+
+.footer-contenido {
+    max-width: 500px; 
+    margin: 0 auto;  
+    width: 100%;
+}
+
+.footer-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.footer-logo img {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 8px rgba(0, 217, 255, 0.5));
+}
+
+.eslogan {
+    font-size: 1.05rem;
+    margin-bottom: 20px;
+    color: #00d9ff;
+}
+
+.footer hr {
+    width: 100%;
+    border: none;
+    height: 2px;
+    margin: 20px auto;
+    background: linear-gradient(to right, transparent, #00d9ff, #7a5cff, transparent);
+    box-shadow: 0 0 10px rgba(0, 217, 255, 0.8);
+}
+
+.footer-info {
+    color: #e0e0e0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.copyright {
+    display: block;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 20px;
+}
+
+/* ==========================
+   ADAPTABILIDAD PARA CELULARES
+========================== */
+
+@media (max-width: 768px) {
+
+    /* ==========================
+       CUERPO
+    ========================== */
+
+    body {
+        min-height: 100vh;
+        background-position: center;
+        background-size: cover;
+    }
+
+
+    /* ==========================
+       CONTENIDO PRINCIPAL
+    ========================== */
+
+    .contenido-final {
+        margin-left: 0;
+        width: 100%;
+        min-height: 100vh;
+        padding: 0 15px;
+    }
+
+
+    /* ==========================
+       REGISTRARSE
+    ========================== */
+
+    .register-btn {
+        top: 15px;
+        right: 15px;
+        padding: 10px 18px;
+        font-size: 0.9rem;
+        border-radius: 13px;
+    }
+
+    .register-btn:hover {
+        transform: none;
+    }
+
+
+    /* ==========================
+       SECCIÓN DE TARJETAS
+    ========================== */
+
+    .cards {
+        width: 100%;
+        padding: 90px 10px 30px;
+    }
+
+
+    /* ==========================
+       TÍTULO
+    ========================== */
+
+    .cards h2 {
+        font-size: 1.8rem;
+        letter-spacing: 1px;
+        margin-bottom: 50px;
+        line-height: 1.2;
+    }
+
+
+    /* ==========================
+       CONTENEDOR DE TARJETAS
+    ========================== */
+
+    .contenedor-cards {
+        width: 100%;
+        max-width: 400px;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        align-items: center;
+    }
+
+
+    /* ==========================
+       TARJETAS
+    ========================== */
+
+    .card {
+        width: min(85vw, 300px);
+    }
+
+    .card:hover {
+        transform: none;
+    }
+
+    .card:hover img {
+        filter: none;
+    }
+
+
+    /* ==========================
+       FOOTER
+    ========================== */
+
+    .footer {
+        width: calc(100% + 30px);
+        margin-left: -15px;
+        margin-top: 80px;
+        padding: 25px 15px;
+    }
+
+    .footer-contenido {
+        width: 100%;
+        max-width: 400px;
+    }
+
+
+    /* ==========================
+       LOGO DEL FOOTER
+    ========================== */
+
+    .footer-logo {
+        gap: 8px;
+        margin-bottom: 8px;
+    }
+
+    .footer-logo img {
+        width: 45px;
+        height: 45px;
+    }
+
+
+    /* ==========================
+       ESLOGAN
+    ========================== */
+
+    .eslogan {
+        font-size: 0.95rem;
+        margin-bottom: 15px;
+    }
+
+
+    /* ==========================
+       INFORMACIÓN
+    ========================== */
+
+    .footer-info {
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+
+    .copyright {
+        font-size: 0.75rem;
+        margin-top: 15px;
+    }
+
+
+    /* ==========================
+       LÍNEA DEL FOOTER
+    ========================== */
+
+    .footer hr {
+        margin: 15px auto;
+    }
+}
+
+
+/* ==========================
+   CELULARES PEQUEÑOS
+========================== */
+
+@media (max-width: 480px) {
+
+    .cards {
+        padding-top: 80px;
+    }
+
+    .cards h2 {
+        font-size: 1.55rem;
+        margin-bottom: 40px;
+    }
+
+    .contenedor-cards {
+        gap: 20px;
+    }
+
+    .card {
+        width: 80vw;
+        max-width: 270px;
+    }
+
+    .register-btn {
+        padding: 9px 15px;
+        font-size: 0.82rem;
+    }
+
+    .footer {
+        margin-top: 60px;
+        padding: 22px 12px;
+    }
+
+    .footer-logo img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .eslogan {
+        font-size: 0.9rem;
+    }
+
+    .footer-info {
+        font-size: 0.8rem;
+    }
+}
