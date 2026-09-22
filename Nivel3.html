@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Astral Travel | Level 3</title>
+
+<link rel="icon" href="IMG/logo.png">
+
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="CSS/Nivel3.css">
+</head>
+<body>
+
+<header class="encabezado-nivel">
+  <a href="Astraltravel.html" class="boton-volver">← Return</a>
+  <h1 class="titulo-nivel">Level 3 <span class="subtitulo-nivel">Animals and their habitat</span></h1>
+  <div class="hud">
+    <div class="vidas" id="vidas">♥♥♥</div>
+    <div class="puntaje">Points: <span id="puntaje">0</span>/6</div>
+  </div>
+</header>
+
+<main class="contenedor-juego">
+
+  <p class="instruccion">Drag each animal back to its habitat🌎</p>
+
+  <div class="area-juego">
+
+    <div class="habitats" id="habitats">
+      <!-- los 6 círculos de hábitat se generan por JavaScript -->
+    </div>
+
+    <div class="banco-animales" id="bancoAnimales">
+      <!-- los animales arrastrables se generan por JavaScript -->
+    </div>
+
+  </div>
+
+</main>
+
+<div class="pantalla-flotante" id="pantallaVictoria" hidden>
+  <div class="parche pantalla-contenido">
+    <h2>¡You did it! 🎉</h2>
+    <p>You placed the 6 animals in their correct habitat.</p>
+    <p class="destacado">Level 4 unlocked!</p>
+    <a href="Astraltravel.html" class="boton-primario">Back to Astral Travel</a>
+  </div>
+</div>
+
+<div class="pantalla-flotante" id="pantallaDerrota" hidden>
+  <div class="parche pantalla-contenido">
+    <h2>¡You almost did it! 💫</h2>
+    <p>Your lives are over. Try again.</p>
+    <button class="boton-primario" id="botonReintentar">Retry</button>
+  </div>
+</div>
+
+<script src="JavaScript/Nivel3.js"></script>
+</body>
+</html>

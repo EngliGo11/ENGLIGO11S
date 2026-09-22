@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Astral Travel - Level 2</title>
+
+<link rel="icon" href="IMG/logo.png">
+
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="CSS/Nivel2.css">
+</head>
+<body>
+
+<header class="encabezado-nivel">
+  <a href="Astraltravel.html" class="boton-volver">← Return</a>
+  <h1 class="titulo-nivel">Level 2<span class="subtitulo-nivel">Class objects</span></h1>
+  <div class="hud">
+    <div class="vidas" id="vidas">♥♥♥</div>
+    <div class="puntaje">Points: <span id="puntaje">0</span>/100</div>
+  </div>
+</header>
+
+<main class="contenedor-juego">
+
+  <p class="instruccion">Is the word correct for the picture? 🔍</p>
+
+  <div class="barra-progreso"><div class="barra-relleno" id="barra"></div></div>
+
+  <div class="parche tarjeta-objeto" id="tarjeta">
+    <img src="IMG/maleta.png" alt="" id="foto" draggable="false">
+    <p class="palabra" id="palabra"></p>
+  </div>
+
+  <div class="respuestas">
+    <button class="boton-respuesta verdadero" id="btnTrue">✔ True</button>
+    <button class="boton-respuesta falso" id="btnFalse">✘ False</button>
+  </div>
+
+</main>
+
+<div class="pantalla-flotante" id="pantallaVictoria" hidden>
+  <div class="parche pantalla-contenido">
+    <h2>YOU DID IT! 🎉</h2>
+    <p>You know the classroom objects in English.</p>
+    <p class="destacado">Level 3 unlocked</p>
+    <a href="Astraltravel.html" class="boton-primario">Back to Astral Travel</a>
+  </div>
+</div>
+
+<div class="pantalla-flotante" id="pantallaDerrota" hidden>
+  <div class="parche pantalla-contenido">
+    <h2>¡You almost did it! 💫</h2>
+    <p>Your lives are over. Try again!</p>
+    <button class="boton-primario" id="botonReintentar">Retry</button>
+  </div>
+</div>
+
+<script src="JavaScript/Nivel2.js"></script>
+</body>
+</html>

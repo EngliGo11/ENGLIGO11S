@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in</title>
+
+    <link rel="icon" href="IMG/logo.png">
+    <link rel="stylesheet" href="CSS/login.css">
+</head>
+
+<body>
+
+    <main class="login-card-container">
+        <section class="login-card">
+            <h2>Log in</h2>
+            <p>Enter your details</p>
+
+            <form id="login-form" onsubmit="handleLogin(event)">
+                <div class="input-group">
+                    <label for="email">Gmail</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="user@gmail.com"
+                        required
+                        autocomplete="email"
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="••••••••"
+                        required
+                        autocomplete="current-password"
+                    >
+                </div>
+
+                <div class="form-options">
+                    <a href="#">¿You forgot your password?</a>
+                </div>
+
+                <button type="submit" class="btn-login">Log in</button>
+
+                <div class="signup-link">
+                    <span id="signup-message">
+                        ¿You don't have an account?
+                        <a href="register.html">Sign up here</a>
+                    </span>
+
+                    <span id="registered-user" class="registered-user" style="display: none;"></span>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <script src="JavaScript/registro.js"></script>
+</body>
+</html>
+

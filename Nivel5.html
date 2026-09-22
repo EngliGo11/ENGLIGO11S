@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Astral Travel | Level 5</title>
+
+<link rel="icon" href="IMG/logo.png">
+
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="CSS/Nivel5.css">
+
+</head>
+<body>
+
+<header class="encabezado-nivel">
+  <a href="Astraltravel.html" class="boton-volver">← Return</a>
+  <h1 class="titulo-nivel">Level 5 <span class="subtitulo-nivel">Greetings and farewells</span></h1>
+  <div class="hud">
+    <div class="vidas" id="vidas">
+       <span>♥</span>
+      <span>♥</span>
+      <span>♥</span>
+    </div>
+    <div class="puntaje">Points: <span id="puntaje">0</span>/6</div>
+  </div>
+</header>
+
+<main class="contenedor-juego">
+
+  <p class="instruccion">Read the story and write the missing greeting or farewell in English in each space. Press Enter to check each one. ✍️</p>
+
+  <div class="parche historia" id="historia">
+    <!-- el texto con los espacios se genera por JavaScript -->
+  </div>
+
+</main>
+
+<div class="pantalla-flotante" id="pantallaVictoria" hidden>
+  <div class="parche pantalla-contenido">
+    <h2>¡You did it! 🎉</h2>
+    <p>You completed the entire story with the correct greetings and farewells.</p>
+    <p class="destacado">You completed Astral Travel! 🚀</p>
+    <a href="Astraltravel.html" class="boton-primario"> Return to Astral Travel</a>
+  </div>
+</div>
+
+<div class="pantalla-flotante" id="pantallaDerrota" hidden>
+  <div class="parche pantalla-contenido">
+    <h2> You almost made it!💫</h2>
+    <p>Your lives are over. Try again!</p>
+    <button class="boton-primario" id="botonReintentar">Retry</button>
+  </div>
+</div>
+
+<script src="JavaScript/Nivel5.js"></script>
+</body>
+</html>
