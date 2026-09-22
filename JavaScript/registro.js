@@ -80,17 +80,20 @@ function handleLogin(event) {
 
 function showRegisteredUser() {
     const registeredUser = localStorage.getItem("registeredUser");
-    const signupMessage = document.getElementById("signup-message");
+
+    const registerButton = document.getElementById("register-button");
     const registeredUserElement = document.getElementById("registered-user");
 
-    if (!signupMessage || !registeredUserElement) return;
+    if (!registerButton || !registeredUserElement) return;
 
     if (registeredUser) {
-        signupMessage.style.display = "none";
-        registeredUserElement.textContent = `Usuario registrado: ${registeredUser}`;
+        registerButton.style.display = "none";
+
+        registeredUserElement.textContent = `Usuario: ${registeredUser}`;
         registeredUserElement.style.display = "inline-block";
     } else {
-        signupMessage.style.display = "inline";
+        registerButton.style.display = "inline-block";
+
         registeredUserElement.style.display = "none";
     }
 }
